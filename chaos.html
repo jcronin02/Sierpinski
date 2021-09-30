@@ -1,0 +1,93 @@
+<html id="main"><script>
+//Setup Page
+title = "Chaos"
+main = document.getElementById("main");
+main.innerHTML = main.innerHTML + "<head id='head'><title>" + title + "</title></head> <body id='body'></body>"
+body = document.getElementById("body");
+head = document.getElementById("head");
+
+//Setup Canvas
+body.innerHTML += "<canvas id='canvas' height='165' width='264'></canvas>";
+canvas = document.getElementById("canvas");
+canvas.style.border = "1px solid #c3c3c3";
+
+//Function to draw pixel at given coordinates
+function PxlOn(y, x){
+	ctx = canvas.getContext("2d");
+	ctx.fillStyle = "#0000FF";
+	ctx.fillRect(x, y, 1, 1);
+}
+
+//Function to round decimal to integer
+function toInt(num){
+	return(Math.round(num));
+}
+
+//Function to generate a pseudo-random integer between two numbers
+function randInt(lower, upper){
+	dif = upper-lower;
+	return (Math.floor(Math.random() * (dif + 1)) + lower)
+}
+
+
+//Initialize Variables
+A = 0;
+B = 0;
+C = 37;
+D = 164;
+
+//Get number of iterations from user
+F = prompt("Iterations:");
+
+//Round iterations to an integer
+G = toInt(F);
+
+//Repeat following for given iterations
+for(X=0; X < G; X++){
+	//Assign a pseudo-random integer from 0 to 2 to E
+	E = randInt(0, 2);
+	
+	//If E is 0
+	if(E == 0){
+		//Calculate middle point between vertex 0 and current position on X & Y axes
+		A = toInt(((C-37)/2)+37);
+		B = toInt(((D-164)/2)+164);
+		
+		//Draw calculated middle point
+		PxlOn(B, A);
+		
+		//Set new point as current position
+		C = A;
+		D = B;
+		
+	
+	} else 
+	
+	//If E is 1
+	if(E == 1){
+	
+		A = toInt(((C-228)/2)+228);
+		B = toInt(((D-164)/2)+164);
+		
+		PxlOn(B, A);
+		
+		C = A;
+		D = B;
+		
+	} else 
+	
+	//If E is 2
+	if(E == 2){
+	
+		A = toInt(((C-132)/2)+132);
+		B = toInt(((D-1)/2)+1);
+		
+		PxlOn(B, A);
+		
+		C = A;
+		D = B;
+		
+	}
+	
+}
+</script></html>
